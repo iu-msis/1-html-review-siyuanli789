@@ -12,6 +12,12 @@ body {
   font-size:large;
 }
 
+#userapp {
+  padding: 3rem 1rem;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .p{
   font-size: smaller;
 }
@@ -75,3 +81,4 @@ th[role=columnheader]:not(.no-sort):hover:after {
 	visibility: visible;
 	opacity: 1;
 }
+
