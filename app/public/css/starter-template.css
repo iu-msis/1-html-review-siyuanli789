@@ -82,3 +82,23 @@ th[role=columnheader]:not(.no-sort):hover:after {
 	opacity: 1;
 }
 
+.student {
+  margin: 10px 2px;
+  padding: 4px;
+  border: 1px solid goldenrod;
+  background-color: white;
+}
+
+.userName {
+  margin: 10px 2px;
+  padding: 4px;
+  border: 1px solid goldenrod;
+  background-color: white;
+}
+
+.studentName{
+  margin: 10px 2px;
+  padding: 4px;
+  border: 1px solid goldenrod;
+  background-color: white;
+}

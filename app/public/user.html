@@ -24,28 +24,82 @@
         </div>
       </nav>
 
-    <div id="userapp">
-      <form v-on:submit.prevent="fetchUserData">
-        <button type="submit" >Refresh</button>
-        <br>
-        <br>
-      </form>
-          <a v-bind:href="url"></a><img v-bind:src="person.picture.large"></a>
-          <br>
-          <br>
-          <h1>红玫瑰与白玫瑰</h1>
-          <p>Name: {{ person.name.first }} {{ person.name.last }}</p>
-          <p>Country of Origin: {{ person.location.country }}</p>
-          <p>Birthday (Year/Month/Day): {{ prettyBirthday }}</p>
-          <p>Age: {{ person.dob.age }}</p>
-          <p>Email: <a v-bind:href="'mailto:'+person.email"> {{ person.email }}</a></p>
+    <div id="offerApp">
+        <div class="student" v-for="s in students"
+          v-on:click="selectStudent(s)">
+          <span class="userName">{{ s.username }}</span><br>
+          <span class = "studentName">{{ s.name }}</span> 
+        </div>
 
-      </div>
+    <div class="col col-8" v-if="selectedStudent">
+      <h1>Offers for {{ selectedStudent.name }}</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Salary</th>
+            <th>Bonus</th>
+            <th>Offer Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="offer in offers">
+            <td>{{ offer.companyName }}</td>
+            <td>{{ offer.salary }}</td>
+            <td>{{ offer.bonus }}</td>
+            <td>{{ offer.company }}</td>
+            <td>{{ offer.offerDate }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
 
-      
       <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
 
+
+      <main role="main" class="container">
+
+        
+        <script src="js/tablesort.min.js"></script> 
+        <script>
+          new Tablesort(document.getElementById('taskTable'));
+        </script>
+      
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Title</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" >
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Author(s)</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Year Published</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Publisher</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Page Count</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">MSRP</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1">
+          </div>
+        </form>
+      
+      </main><!-- /.container -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      </html>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 

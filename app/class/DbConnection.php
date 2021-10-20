@@ -1,5 +1,4 @@
-
-<?php
+<?php //if have a empty line outside, sends back an empty line, error message 
 
 class DbConnection
 {
