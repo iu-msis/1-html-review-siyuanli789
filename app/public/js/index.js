@@ -1,119 +1,58 @@
-const Offer = {
+const User = {
     data() {
       return {
-        "books": [],
-        "students": [],
-        "offers": [],
-        "selectedStudent": null,
-        "bookForm": {},
-        "selectedBook": null 
-      }
+        "person": {},
+        "offers": [
+                {
+                    "id": 100,
+                    "name": "Jung In Kim",
+                    "salary": 180000,
+                    "bonus": 10000,
+                    "company":"Penn State",
+                    "offerDate": "2019-09-08"
+                },
+                {
+                    "id": 200,
+                    "name": "Jiro Yoshida",
+                    "salary": 80000,
+                    "bonus": 2000,
+                    "company":"IU",
+                    "offerDate": "2021-08-09"
+                }
+            ]
+        }
     },
 
+
+    computed:{
+        prettyBirthday( ) {
+            return dayjs(this.person.dob.date)
+            .format ('YYYY年M月D日')
+        }
+    },
+
+
     methods: {
-        fetchBookData() {
-            fetch('/api/books/')
-            .then(response => response.json())
-            .then((parsedJson) => {
-                console.log(parsedJson);
-                this.books = parsedJson
+        fetchUserData() {
+            console.log("A");
+            fetch('https://randomuser.me/api/')
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                console.log("C");
+                this.person = responseJson.results[0];
             })
             .catch( (err) => {
                 console.error(err);
-            });
-        },
-
-        postBook(evt) {
-            if (this.selectedBook === null) {
-                this.postNewBook(evt);
-
-            } else {
-                this.postEditBook(evt);
-            }
-        },
-
-
-        postNewBook(evt) {
-            console.log("Creating!", this.bookForm);
-            alert("Created!");
-
-        fetch('api/books/create.php',{
-            method:'POST',
-            body: JSON.stringify(this.bookForm),
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            }
-        })
-        .then( response => response.json() )
-        .then( json => {
-            console.log("Returned from post:", json);
-            this.books = json;
-            this.resetBookForm = {};
-        });
-    },
-    
-        postEditBook(evt) {
-            this.bookForm.bookId = this.selectedBook.Id;
-            this.bookForm.id = this.selectedBook.id;
-            console.log("Updating!", this.bookForm);
-            alert("Updated!");
-
-        fetch('api/books/update.php',{
-            method:'POST',
-            body: JSON.stringify(this.bookForm),
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-    }
-})
-        .then( response => response.json() )
-        .then( json => {
-            console.log("Returned from post:", json);
-            this.books = json;
-            this.resetBookForm = {};
-        });
-    },
-
-        postDeleteBook(o) {
-           if ( !confirm("Are you sure you want to delete the offer from " + o.title +"?") ) {
-                return;
-            }
-            console.log("Delete!", o);
-
-        fetch('api/books/delete.php',{
-            method:'POST',
-            body: JSON.stringify(o),
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
+            })
+            console.log("B");
         }
-    })
-        .then( response => response.json() )
-        .then( json => {
-            console.log("Returned from post:", json);
-            this.books = json;
-            this.resetBookForm = {};
-        });
     },
-
-
-    
-  
-
-        selectBookToEdit(b) {
-        this.selectedBook = b;
-        this.bookForm = Object.assign({}, this.selectedBook);
-    },
-        resetBookForm() {
-        this.selectedBook = null;
-        this.bookForm = {};
-  }
-},
-
-
 
     created() {
-        this.fetchBookData ();
+        this.fetchUserData ();
     } //end created
 } // end Offer config
 
-
-Vue.createApp(Offer).mount('#books');
+Vue.createApp(User).mount('#userapp');
+console.log("Z"); 

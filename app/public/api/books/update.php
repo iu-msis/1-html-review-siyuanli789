@@ -24,7 +24,7 @@ $stmt = $db->prepare(
         publisher = ?,
         pageCount = ?,
         msrp = ?
-        '
+        WHERE id = ?'
 );
 
 $stmt->execute([
@@ -33,10 +33,12 @@ $stmt->execute([
     $_POST['yearPublished'],
     $_POST['publisher'],
     $_POST['pageCount'],
-    $_POST['msrp']
+    $_POST['msrp'],
+    $_POST['id']
 ]);
 
 // $pk = $db->lastInsertId();
 
 header('HTTP/1.1 303 See Other');
-header('Location: ../books/?books=' . $_POST['bookId']);
+header('Location: ../books/?books=');
+
